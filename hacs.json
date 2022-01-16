@@ -1,0 +1,6 @@
+ {
+  "name": "smsaero.ru notify",
+  "country": "RU",
+  "render_readme": false,
+  "domains": ["notify"]
+}

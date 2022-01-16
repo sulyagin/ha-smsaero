@@ -1,0 +1,8 @@
+{
+  "domain": "smsaero",
+  "name": "smsaero.ru notify",
+  "documentation": "https://github.com/sulyagin/ha-smsaero",
+  "dependencies": [],
+  "codeowners": ["@sulyagin"],
+  "requirements": []
+}
