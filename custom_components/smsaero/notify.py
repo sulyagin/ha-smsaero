@@ -9,7 +9,7 @@ import voluptuous as vol
 from homeassistant.components.notify import ATTR_TARGET, PLATFORM_SCHEMA, BaseNotificationService
 from homeassistant.const import (
     CONF_API_KEY,
-    CONF_LOGIN,
+    CONF_EMAIL,
     CONF_SENDER,
     CONTENT_TYPE_JSON,
 )
@@ -19,7 +19,7 @@ import homeassistant.helpers.config_validation as cv
 _LOGGER = logging.getLogger(__name__)
 
 BASE_API_URL = "https://gate.smsaero.ru/v2/sms"
-DEFAULT_SENDER = "SERVICE"
+DEFAULT_SENDER = "SMSAero"
 TIMEOUT = 5
 
 PLATFORM_SCHEMA = vol.Schema(
@@ -27,7 +27,7 @@ PLATFORM_SCHEMA = vol.Schema(
         PLATFORM_SCHEMA.extend(
             {
                 vol.Required(CONF_API_KEY): cv.string,
-                vol.Required(CONF_LOGIN): cv.string,
+                vol.Required(CONF_EMAIL): cv.string,
                 vol.Optional(CONF_SENDER, default=DEFAULT_SENDER): cv.string,
             }
         )
@@ -44,7 +44,7 @@ class SmsAeroNotificationService(BaseNotificationService):
     def __init__(self, config):
         """Initialize the service."""
         self.api_key = config[CONF_API_KEY]
-        self.login = config[CONF_API_KEY]
+        self.login = config[CONF_EMAIL]
         self.sender = config[CONF_SENDER]
 
     def send_message(self, message="", **kwargs):
@@ -61,7 +61,7 @@ class SmsAeroNotificationService(BaseNotificationService):
             url_param = {
                 "number": target,
                 "text": message,
-                "from": self.sender,
+                "sign": self.sender,
             }
             resp = requests.get(api_url, auth=(self.login, self.api_key), params=url_param, timeout=TIMEOUT)
 

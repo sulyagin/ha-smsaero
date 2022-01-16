@@ -1,8 +1,10 @@
 {
   "domain": "smsaero",
-  "name": "smsaero.ru notify",
+  "name": "SMSAero.ru Notify",
+  "version": "1.0.0",
   "documentation": "https://github.com/sulyagin/ha-smsaero",
   "dependencies": [],
   "codeowners": ["@sulyagin"],
-  "requirements": []
+  "requirements": [],
+  "iot_class": "cloud_polling"
 }
